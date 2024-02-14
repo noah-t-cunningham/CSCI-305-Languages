@@ -1,0 +1,13 @@
+rooms([lives(_, 1), lives(_, 2), lives(_, 3), lives(_, 4), lives(_, 5)]).
+
+adjacent(Y, Z) :- (Y =:= Z + 1; 
+		  Y =:= Z - 1).
+	      
+hallway(X) :- rooms(X),
+	      member(lives(addiley, A), X),
+	      member(lives(laura, B), X), B\=1,
+	      member(lives(hunter, C), X), C\=5,
+	      member(lives(arnie, D), X), D\=1, D\=5,
+	      member(lives(ramey, E), X), E > B,
+	      \+(adjacent(D, A)),
+  	      \+(adjacent(D, B)).
